@@ -1,0 +1,116 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    width: 320px;
+    padding: 16px;
+    background: #ffffff;
+    color: #333333;
+}
+
+/* Container styles */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Title styles */
+.app-title {
+    color: #1a73e8;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Form group styles */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Label styles */
+label {
+    font-weight: 500;
+    color: #5f6368;
+    font-size: 14px;
+}
+
+/* Input styles */
+input[type="text"],
+select {
+    padding: 8px 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Button styles */
+.primary-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+    background-color: #1557b0;
+}
+
+.primary-button:active {
+    background-color: #174ea6;
+}
+
+/* Result container styles */
+.result-container {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 12px;
+    min-height: 48px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Success and error states */
+.success {
+    color: #0f9d58;
+}
+
+.error {
+    color: #d93025;
+}
+
+/* Input group for related fields */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Responsive hover states */
+@media (hover: hover) {
+    input[type="text"]:hover,
+    select:hover {
+        border-color: #bdc1c6;
+    }
+}

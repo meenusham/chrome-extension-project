@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css">
+    <title>LOFT</title>
+</head>
+<body>
+    <div class="app-container">
+        <h1 class="app-title">LOFT</h1>
+        
+        <div class="form-group">
+            <label for="site-textbox">Site</label>
+            <input type="text" id="site-textbox" name="site" placeholder="Enter site ID">
+        </div>
+
+        <div class="form-group">
+            <label for="env-dropdown">Environment</label>
+            <select id="env-dropdown" name="environment">
+                <option value="SAT">SAT</option>
+                <option value="OCRT">OCRT</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="perform-dropdown">Perform</label>
+            <select id="perform-dropdown" name="perform">
+                <option value="enableWHWidget">Enable WH Widget</option>
+                <option value="siteStatus">Site Status</option>
+                <option value="siteDetails">Site Details</option>
+                <option value="resmId">Get Resident Member ID</option>
+                <option value="randomresmId">Get Random Resident Member ID</option>
+                <option value="formerresident">Get Former Resident</option>
+                <option value="chasemidAndlidSettings">Chase MID & LID Settings</option>
+                <option value="enableCD">Enable CD</option>
+                <option value="enableRD">Enable RD</option>
+                <option value="clearcache">Cache Reset</option>
+                <option value="extendexpiry">Extend Site Expiry date</option>
+            </select>
+        </div>
+
+        <div id="resmId-fields" class="form-group" style="display:none;">
+            <div class="input-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" placeholder="Enter first name">
+            </div>
+            <div class="input-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" placeholder="Enter last name">
+            </div>
+        </div>
+
+        <div id="site-expiry" class="form-group" style="display:none;">
+            <div class="input-group">
+                <label for="batch-id">Batch Id</label>
+                <input type="text" id="batch-id" name="batch-id" placeholder="Enter batch id">
+            </div>
+            <div class="input-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="YYYY-MM-DD">
+            </div>
+        </div>
+
+        <div id="result" class="result-container"></div>
+        
+        <button type="button" id="submit-button" class="primary-button">Submit</button>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
