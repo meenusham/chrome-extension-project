@@ -407,11 +407,15 @@ select option {
   color: #ea4335;
 }
 
-/* Result container warning state */
-.result-container.warning {
-  background-color: #fff3e0;
-  border-color: #ffcc80;
-  color: #e65100;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Dark mode support for result container */
@@ -440,12 +444,6 @@ select option {
   
   .result-container.error strong {
     color: #f28b82;
-  }
-  
-  .result-container.warning {
-    background-color: #462c00;
-    border-color: #b36a00;
-    color: #ffcc80;
   }
 }
 

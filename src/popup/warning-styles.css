@@ -1,0 +1,15 @@
+/* Result container warning state */
+.result-container.warning {
+  background-color: #fff3e0;
+  border-color: #ffcc80;
+  color: #e65100;
+}
+
+/* Dark mode support for warning state */
+@media (prefers-color-scheme: dark) {
+  .result-container.warning {
+    background-color: #462c00;
+    border-color: #b36a00;
+    color: #ffcc80;
+  }
+}

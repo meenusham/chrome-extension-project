@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
-    <title>LOFT</title>
+    <link rel="stylesheet" href="loading-ui.css">
+    <link rel="stylesheet" href="warning-styles.css">
+    <title>Site Management Tool</title>
 </head>
 <body>
     <div class="app-container">
-        <h1 class="app-title">LOFT</h1>
+        <h4 class="app-title">Site Management Tool</h4>
         
         <div class="form-group">
             <label for="site-textbox">Site</label>
-            <input type="text" id="site-textbox" name="site" placeholder="Enter site ID">
+            <input type="text" id="site-textbox" name="site" placeholder="Enter site ID" autocomplete="off">
+            <span class="field-icon site-icon"></span>
         </div>
 
         <div class="form-group">
             <label for="env-dropdown">Environment</label>
-            <select id="env-dropdown" name="environment">
+            <select id="env-dropdown" name="environment" required>
+                <option value="" disabled selected>Select environment</option>
                 <option value="SAT">SAT</option>
                 <option value="OCRT">OCRT</option>
             </select>
@@ -25,7 +29,8 @@
 
         <div class="form-group">
             <label for="perform-dropdown">Perform</label>
-            <select id="perform-dropdown" name="perform">
+            <select id="perform-dropdown" name="perform" required>
+                <option value="" disabled selected>Select action to perform</option>
                 <option value="enableWHWidget">Enable WH Widget</option>
                 <option value="siteStatus">Site Status</option>
                 <option value="siteDetails">Site Details</option>
@@ -34,6 +39,7 @@
                 <option value="formerresident">Get Former Resident</option>
                 <option value="chasemidAndlidSettings">Chase MID & LID Settings</option>
                 <option value="enableCD">Enable CD</option>
+                <option value="enableHybrid">Enable Hybrid</option>
                 <option value="enableRD">Enable RD</option>
                 <option value="clearcache">Cache Reset</option>
                 <option value="extendexpiry">Extend Site Expiry date</option>
@@ -43,29 +49,34 @@
         <div id="resmId-fields" class="form-group" style="display:none;">
             <div class="input-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first-name" placeholder="Enter first name">
+                <input type="text" id="first-name" name="first-name" placeholder="Enter first name" autocomplete="off">
             </div>
             <div class="input-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" placeholder="Enter last name">
+                <input type="text" id="last-name" name="last-name" placeholder="Enter last name" autocomplete="off">
             </div>
         </div>
 
         <div id="site-expiry" class="form-group" style="display:none;">
             <div class="input-group">
                 <label for="batch-id">Batch Id</label>
-                <input type="text" id="batch-id" name="batch-id" placeholder="Enter batch id">
+                <input type="text" id="batch-id" name="batch-id" placeholder="Enter batch id" autocomplete="off">
             </div>
             <div class="input-group">
                 <label for="expiry-date">Expiry Date</label>
-                <input type="text" id="expiry-date" name="expiry-date" placeholder="YYYY-MM-DD">
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="YYYY-MM-DD" data-tooltip="Format: YYYY-MM-DD">
             </div>
         </div>
 
         <div id="result" class="result-container"></div>
         
-        <button type="button" id="submit-button" class="primary-button">Submit</button>
+        <button type="button" id="submit-button" class="primary-button">
+            <div class="button-spinner"></div>
+            <span class="button-text">Submit</span>
+        </button>
     </div>
+    
+    <script src="toast-removed.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

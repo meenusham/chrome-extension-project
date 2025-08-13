@@ -1,0 +1,265 @@
+/* Enhanced processing UI styles */
+
+/* Loading container and spinner */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+  color: #1a73e8;
+  font-weight: 500;
+  border: 1px solid #e0e4e9;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loading-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(26, 115, 232, 0.2);
+  border-radius: 50%;  border-top-color: #1a73e8;
+  border-left-color: #1a73e8;
+  animation: spinner 0.8s linear infinite, pulse 2s infinite;
+  vertical-align: middle;
+}
+
+.loading-message {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Button spinner styles */
+.button-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  animation: spinner 0.8s linear infinite;
+  margin-right: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Primary button processing state */
+.primary-button.processing {
+  position: relative;
+  background: linear-gradient(135deg, #4d8ef7 0%, #3b78e7 100%);
+  cursor: wait;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-button.processing .button-spinner {
+  display: inline-block;
+}
+
+.primary-button.processing .button-text {
+  opacity: 0.9;
+}
+
+/* Spinner animation */
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pulse animation for subtle emphasis */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(26, 115, 232, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(26, 115, 232, 0);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Warning container for insecure connections */
+.warning-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff3e0;
+  border: 1px solid #ffcc80;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+  color: #e65100;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.warning-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.warning-message {
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.warning-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.warning-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.warning-button.proceed {
+  background-color: #e65100;
+  color: white;
+}
+
+.warning-button.proceed:hover {
+  background-color: #f57c00;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.warning-button.cancel {
+  background-color: #e0e0e0;
+  color: #424242;
+}
+
+.warning-button.cancel:hover {
+  background-color: #bdbdbd;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific styles for HTTP vs HTTPS warnings */
+.warning-container.http-warning {
+  background-color: #ffebee;
+  border-color: #ffcdd2;
+  color: #c62828;
+  box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+  animation: pulseWarning 2s infinite;
+}
+
+.warning-container.https-warning {
+  background-color: #fff8e1;
+  border-color: #ffe082;
+  color: #ff8f00;
+  box-shadow: 0 2px 8px rgba(255, 143, 0, 0.15);
+}
+
+@keyframes pulseWarning {
+  0% {
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+  }
+  50% {
+    box-shadow: 0 2px 12px rgba(198, 40, 40, 0.4);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.2);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-container {
+    background-color: #2c3440;
+    border-color: #3c4043;
+    color: #8ab4f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+    .loading-spinner {
+    border-color: rgba(138, 180, 248, 0.2);
+    border-top-color: #8ab4f8;
+    border-left-color: #8ab4f8;
+    animation: spinner 0.8s linear infinite, darkPulse 2s infinite;
+  }
+  
+  .primary-button.processing {
+    background: linear-gradient(135deg, #3b78e7 0%, #2c5aa8 100%);
+  }
+  
+  .button-spinner {
+    border-color: rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    border-left-color: #fff;
+  }
+    .warning-container {
+    background-color: #462c00;
+    border-color: #b36a00;
+    color: #ffcc80;
+  }
+  
+  .warning-container.http-warning {
+    background-color: #4a0000;
+    border-color: #c62828;
+    color: #ffcdd2;
+  }
+  
+  .warning-container.https-warning {
+    background-color: #4d3500;
+    border-color: #ff8f00;
+    color: #ffe082;
+  }
+    .warning-button.proceed {
+    background-color: #f57c00;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .warning-button.proceed:hover {
+    background-color: #ff9800;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  }
+  
+  .warning-button.cancel {
+    background-color: #424242;
+    color: #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  .warning-button.cancel:hover {
+    background-color: #616161;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+}

@@ -209,6 +209,65 @@ app.get('/enableRD/:DB/:SITE/:PMC/:env', async (req, res) => {
   }
 });
 
+app.get('/enableHybrid/:DB/:SITE/:PMC/:env', async (req, res) => {
+  const config = await connectDB(req.params.DB, req.params.SITE);
+
+  console.log(config)
+  const site = req.params.SITE;
+  const pmc = req.params.PMC;
+  const environment = req.params.env;
+  const siteId = site.replace('s', '');
+  console.log('Site ID processing:', { original: site, processed: siteId });
+
+  try {
+    await sql.connect(config);
+    
+    // Execute all queries in sequence
+    let result;  
+    result = await sql.query`
+         update servicefeesettings set ResidentDirectMode=1, ServiceFeeSourceType=1 where applicationguid = 'ADD708A3-E0AC-4456-B07E-6ECB4F2A8EB2' and ServiceFeeTransactionType in (1,3,4,5) 
+    `;
+    console.log('Query 1 completed');
+    
+    result = await sql.query`
+        update servicefeesettings set ResidentDirectMode=2, ServiceFeeSourceType=0 where applicationguid = 'ADD708A3-E0AC-4456-B07E-6ECB4F2A8EB2' and ServiceFeeTransactionType=0
+    `;
+    console.log('Query 2 completed');    
+
+    const url = 'http://' + environment + '.realpage.com/Payments/PaymentSettingsSvc/PaymentsSettings.asmx/ResetCachedSiteSettings?pmcID=' + pmc + '&siteID=' + siteId + '&applicationGuid=ADD708A3-E0AC-4456-B07E-6ECB4F2A8EB2';
+    let response = await fetch(url, {
+      method: 'GET'
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      console.log('Cache reset response:', response.status);
+      response = await fetch(url, {
+        method: 'GET'
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        console.log('Cache reset response:', response.status);
+        response = await fetch(url, {
+          method: 'GET'
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          console.log('Cache reset response:', response.status);
+          res.json({ success: true, message: 'Converted to Hybrid successfully' });
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Error executing query:', err);
+    res.status(500).json({ success: false, error: err.message });
+  } finally {
+    await sql.close();
+  }
+});
+
 app.get('/enableCD/:DB/:SITE/:PMC/:env', async (req, res) => {
   const config = await connectDB(req.params.DB, req.params.SITE);
 
